@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Nexus - Tools Page">
+    <title>AI Nexus Tools</title>
+
+    <!-- Preload critical assets -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-bg: radial-gradient(circle, rgba(99, 102, 241, 1) 0%, rgba(45, 55, 72, 1) 50%, rgba(17, 24, 39, 1) 100%);
+            --sidebar-bg: #1f2937;
+            --hover-bg: #4338ca;
+            --text-color: #fff;
+            --accent-color: #4338ca;
+            --box-bg: #2d3748;
+            --box-hover-bg: rgba(67, 56, 202, 0.8);
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: var(--primary-bg);
+            color: var(--text-color);
+        }
+
+        .tools-box {
+            background: var(--box-bg);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--box-shadow);
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .tools-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: var(--box-hover-bg);
+        }
+
+        .tools-icon {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tools-box h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .tools-box p {
+            color: #cbd5e0;
+        }
+
+        /* Sidebar styling */
+        #sidebar {
+            transition: transform 0.3s ease-in-out;
+            background-color: var(--sidebar-bg);
+        }
+
+        #sidebar.show {
+            transform: translateX(0);
+        }
+
+        .sidebar-link {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: var(--hover-bg);
+            color: var(--text-color);
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 1024px) {
+            #main-content {
+                margin-left: 0;
+            }
+
+            #sidebar {
+                transform: translateX(-100%);
+            }
+
+            #sidebar.show {
+                transform: translateX(0);
+            }
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-gray-900 via-purple-800 to-black text-gray-200">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-64 py-7 px-4 fixed inset-y-0 left-0 z-20 overflow-y-auto transition-transform duration-300 ease-in-out rounded-r-lg">
+            <header class="flex justify-between items-center">
+                <a href="#" class="text-white text-2xl font-bold flex items-center" aria-label="AI Nexus Home">
+                    <i class="fas fa-robot w-8 h-8 mr-3" aria-hidden="true"></i> 
+                    AI<span class="text-indigo-500">Nexus</span> Pro
+                </a>
+                <button id="sidebar-toggle" class="text-gray-300 hover:text-white focus:outline-none md:hidden" aria-label="Toggle Sidebar">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </header>
+            <nav class="mt-10" aria-label="Sidebar Navigation">
+                <ul>
+                    <li><a href="/dashboard" class="sidebar-link flex items-center px-4 py-2 rounded-md transition-all"><i class="fas fa-tachometer-alt mr-3" aria-hidden="true"></i> Dashboard</a></li>
+                    <li><a href="/shop" class="sidebar-link flex items-center px-4 py-2 rounded-md transition-all"><i class="fas fa-store mr-3" aria-hidden="true"></i> Shop</a></li>
+                    <li><a href="/faq-support" class="sidebar-link flex items-center px-4 py-2 rounded-md transition-all"><i class="fas fa-life-ring mr-3" aria-hidden="true"></i> FAQ & Support</a></li>
+                    <li><a href="/forum" class="sidebar-link flex items-center px-4 py-2 rounded-md transition-all"><i class="fas fa-comments mr-3" aria-hidden="true"></i> Forum</a></li>
+                    <li><a href="/tools" class="sidebar-link flex items-center px-4 py-2 rounded-md transition-all active"><i class="fas fa-tools mr-3" aria-hidden="true"></i> Tools</a></li>
+                    <li><a href="/claim" class="sidebar-link flex items-center px-4 py-2 rounded-md transition-all"><i class="fas fa-gift mr-3" aria-hidden="true"></i> Claim</a></li>
+                    <li><a href="/settings" class="sidebar-link flex items-center px-4 py-2 rounded-md transition-all"><i class="fas fa-cog mr-3" aria-hidden="true"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="flex-1 ml-64 bg-black bg-opacity-70 p-6 transition-all duration-300 fade-in">
+            <!-- Header -->
+            <header class="sticky top-0 bg-gray-800 p-4 shadow-lg z-10 flex justify-between items-center rounded-b-lg">
+                <div>
+                    <h1 class="text-3xl font-semibold text-white">AI Tools</h1>
+                    <p class="text-sm text-gray-400">Explore free and premium AI tools.</p>
+                </div>
+            </header>
+
+            <!-- Tools Section -->
+            <section id="tools-section" class="mt-6">
+                <!-- Free Tools -->
+                <h2 class="text-2xl font-semibold mb-4">Free Tools</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Free Tool: Text Summarizer -->
+                    <div class="tools-box" onclick="location.href='/tools/summarizer'" aria-label="Text Summarizer">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-semibold">Text Summarizer</h2>
+                            <div class="tools-icon"><i class="fas fa-align-left text-white" aria-hidden="true"></i></div>
+                        </div>
+                        <p>Summarize lengthy texts quickly.</p>
+                    </div>
+
+                    <!-- Free Tool: Sentiment Analyzer -->
+                    <div class="tools-box" onclick="location.href='/tools/sentiment'" aria-label="Sentiment Analyzer">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-semibold">Sentiment Analyzer</h2>
+                            <div class="tools-icon"><i class="fas fa-smile text-white" aria-hidden="true"></i></div>
+                        </div>
+                        <Here is the continuation and completion of the optimized code for your AI Nexus tools page:
+
+```html
+                        <p>Analyze text sentiment.</p>
+                    </div>
+
+                    <!-- Free Tool: AI Code Generator -->
+                    <div class="tools-box" onclick="location.href='/tools/code-generator'" aria-label="AI Code Generator">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-semibold">AI Code Generator</h2>
+                            <div class="tools-icon"><i class="fas fa-code text-white" aria-hidden="true"></i></div>
+                        </div>
+                        <p>Generate code snippets from descriptions.</p>
+                    </div>
+                </div>
+
+                <!-- Paid Tools -->
+                <h2 class="text-2xl font-semibold mt-10 mb-4">Premium Tools</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Paid Tool: Word AI -->
+                    <div class="tools-box" onclick="location.href='/tools/word-ai'" aria-label="Word AI">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-semibold">Word AI</h2>
+                            <div class="tools-icon"><i class="fas fa-file-alt text-white" aria-hidden="true"></i></div>
+                        </div>
+                        <p>Enhance your writing with AI-powered suggestions.</p>
+                    </div>
+
+                    <!-- Paid Tool: Tegnsætning -->
+                    <div class="tools-box" onclick="location.href='/tools/tegnsætning'" aria-label="Tegnsætning">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-semibold">Tegnsætning</h2>
+                            <div class="tools-icon"><i class="fas fa-pencil-alt text-white" aria-hidden="true"></i></div>
+                        </div>
+                        <p>Automatically correct punctuation errors.</p>
+                    </div>
+
+                    <!-- Paid Tool: Ordbog AI -->
+                    <div class="tools-box" onclick="location.href='/tools/ordbog-ai'" aria-label="Ordbog AI">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-semibold">Ordbog AI</h2>
+                            <div class="tools-icon"><i class="fas fa-book text-white" aria-hidden="true"></i></div>
+                        </div>
+                        <p>Explore AI-powered dictionaries and term explanations.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- External JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="assets/js/dashboard.js"></script>
+    <script>
+        // Sidebar Toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            mainContent.classList.toggle('ml-0');
+            mainContent.classList.toggle('ml-64');
+        });
+
+        // User Menu Toggle
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.getElementById('user-menu');
+
+        userMenuButton.addEventListener('click', () => {
+            const expanded = userMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            userMenuButton.setAttribute('aria-expanded', !expanded);
+            userMenu.classList.toggle('hidden');
+        });
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const isDark = body.classList.contains('dark');
+            themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            themeToggle.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+        });
+    </script>
+</body>
+</html>
